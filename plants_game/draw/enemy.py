@@ -9,7 +9,7 @@ class Zombie:
 		self.pos = Position(0, 0)
 		self.size_y = zombie_view["size_y"]
 		self.size_x = zombie_view["size_x"]
-		self.speed = -1.3
+		self.speed = -0.2
 		self.img_plant = img_id		
 		self.get_image = Imageposition(zombie_view["x"], zombie_view["y"])
 		self.color_tr = 2
@@ -38,30 +38,30 @@ class Health:
 		self.to_pos.y = to_y
 
 ZOMBIES_PARAMS = [
-	# {
-	# 	"x": 0,
-	# 	"y": 16,
-	# 	"size_y": 10,
-	# 	"size_x": 7,
-	# 	"health": random.choice([3,4,5]),
-	# 	"archer": False
-	# },
-	# {
-	# 	"x": 10,
-	# 	"y": 16,
-	# 	"size_y": 10,
-	# 	"size_x": 6,
-	# 	"health": 2,
-	# 	"archer": False
-	# },
-	# {
-	# 	"x": 0,
-	# 	"y": 32,
-	# 	"size_y": 10,
-	# 	"size_x": 6,
-	# 	"health": random.choice([1,2]),
-	# 	"archer": False
-	# },
+	{
+		"x": 0,
+		"y": 16,
+		"size_y": 10,
+		"size_x": 7,
+		"health": random.choice([3,4,5]),
+		"archer": False
+	},
+	{
+		"x": 10,
+		"y": 16,
+		"size_y": 10,
+		"size_x": 6,
+		"health": 2,
+		"archer": False
+	},
+	{
+		"x": 0,
+		"y": 32,
+		"size_y": 10,
+		"size_x": 6,
+		"health": random.choice([1,2]),
+		"archer": False
+	},
 	{
 		"x": 8,
 		"y": 32,

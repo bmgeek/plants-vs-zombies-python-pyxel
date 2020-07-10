@@ -28,12 +28,9 @@ class App:
 			Wall(20, 87)
 		]
 		self.Zombies = []	# список с зомбаками
-
-		self.Score = 0
-
-		self.Weapon = Shotgun(img_id=self.IMG_ID0)
-
-		self.Game_status = True
+		self.Score = 0		# очки игрока
+		self.Weapon = Shotgun(img_id=self.IMG_ID0) 	# рисуем обрез снизу экрана
+		self.Game_status = True		# если игра не закочена
 
 		#  запускаем отрисовку игрульки
 		pyxel.run(self.update, self.draw)
@@ -159,10 +156,6 @@ class App:
 						self.Zombie_balls[i].size,
 						self.Zombie_balls[i].color
 					)
-					# if (int(self.Zombie_balls[i].pos.x) in range(int(self.plant.pos.x), int(self.plant.pos.x) + self.plant.size_x)
-					# and int(self.Zombie_balls[i].pos.y) in range(int(self.plant.pos.y), int(self.plant.pos.y)+self.plant.size_y)):
-					# 	del self.Zombie_balls[i]
-					# 	break
 					try:
 						if self.kill_gamer(i):
 							break
@@ -175,10 +168,10 @@ class App:
 	# отрисовка всех объектов на экране
 	def draw(self):
 		if not self.Game_status:
-			print("asdfds")
 			pyxel.cls(0)
 			pyxel.text(self.WINDOW_W/2-18, self.WINDOW_H/2-5, "Game Over", 8)
 			return
+
 		pyxel.cls(0) # очищаем экран, выставляем ему черный цвет (цвет можно поменять)
 		pyxel.blt(0, 0, 1, 0, 0, 160, 120, 0)	# отрисовываем бэкграунд (само поле)
 		# отрисовка игрока
@@ -190,9 +183,9 @@ class App:
 		# рисуем пушку снизу экрана
 		pyxel.blt(self.Weapon.pos.x, self.Weapon.pos.y, self.Weapon.img_shotgun, self.Weapon.get_image.pos.x, self.Weapon.get_image.pos.y, self.Weapon.size_x, self.Weapon.size_y, self.Weapon.color_tr)
 
+		# выстрел зомби (пульки от зомби)
 		for zombie_push in self.Zombie_balls:
 			pyxel.circ(zombie_push.pos.x, zombie_push.pos.y, zombie_push.size, zombie_push.color)
-			
 
 		for patron in self.Patrons_display:
 			pyxel.blt(patron.pos.x, patron.pos.y, patron.img_patron, patron.get_image.pos.x, patron.get_image.pos.y, patron.size_x, patron.size_y, patron.color_tr)
@@ -223,7 +216,7 @@ class App:
 				return True
 		return False
 
-	# 
+	# если пуля от зомби попала в игрока
 	def kill_gamer(self, ball_index):
 		# print("ballx: {ballx}, bally: {bally}, plantx: {plantx}, planty: {planty}, plantx_size: {plantx_size}, planty_size: {planty_size}".format(
 		# 	ballx = int(self.Zombie_balls[ball_index].pos.x),
@@ -240,7 +233,7 @@ class App:
 			return True
 		return False
 
-	# 
+	# если зомби дошел до линии, по которой ходит игрок
 	def kill_heart(self):
 		for zombie in range(len(self.Zombies)):
 			if int(self.Zombies[zombie].pos.x) < (int(self.plant.pos.x) + self.plant.size_x):
@@ -255,6 +248,7 @@ class App:
 				return True
 		return False
 
+	# конец игры - очищаем все списки, которые рисуются на экране (шары, противники)
 	def new_game(self):
 		self.Balls.clear()
 		self.Zombie_balls.clear()
