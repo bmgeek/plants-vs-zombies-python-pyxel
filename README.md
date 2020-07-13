@@ -20,4 +20,4 @@
 * количество патрон в левом нижнем углу
 
 
-![Alt text](https://github.com/bmgeek/plants-vs-zombies-python-pyxel/screen.png?raw=true "Title")
+![Alt text](https://github.com/bmgeek/plants-vs-zombies-python-pyxel/blob/master/screen.png?raw=true "Title")
